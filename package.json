@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/Liiv-Dev/Liivs-Logo-Designer/issues"
   },
-  "homepage": "https://github.com/Liiv-Dev/Liivs-Logo-Designer#readme"
+  "homepage": "https://github.com/Liiv-Dev/Liivs-Logo-Designer#readme",
+  "dependencies": {
+    "inquirer": "^8.2.6"
+  }
 }

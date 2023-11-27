@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const svgShape = require('./lib/shapes')
 
 // Color code format for hex colors
 const hexColorRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
@@ -57,9 +58,7 @@ function writeToFile(filename, data) {
 const init = () => {
     inquirer.prompt(questions)
         .then((data) => {
-            // Assuming svgContent is a function that generates SVG content based on user inputs
-            const svgContent = require('./lib/shapes.js');
-            writeToFile('logo.svg', svgContent(data));
+            writeToFile('logo.svg', svgShape(data));
         })
         .catch((err) => {
             console.log(err);
