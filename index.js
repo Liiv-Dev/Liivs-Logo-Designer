@@ -7,10 +7,18 @@ const hexColorRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
 
 //function checks for inputs with valid colors and hex colors 
 const validColors = (input) => {
-    const colors = ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'black', 'white', 'pink'].includes(input.toLowerCase());
+    const colors = [
+        `red`, `green`, `blue`, `yellow`, `purple`, `orange`, `black`,
+        `white`, `pink`, `cyan`, `brown`, `teal`, `maroon`, `lavender`
+    ];
+
     const hexColors = hexColorRegex.test(input);
 
-    return colors || hexColors ? true : 'Please enter a valid color or hex color.';
+    if (colors || hexColors) {
+        return true;
+    } else {
+        return 'Please enter a valid color or hex color.';
+    }
 };
 
 // Array of questions for user input
@@ -26,19 +34,19 @@ const questions = [
     {
         type: 'input',
         name: 'textColor',
-        message: 'Please enter valid color or hex color:',
+        message: 'Please enter color for text:',
         validate: validColors,
     },
     {
         type: 'list',
         name: 'shape',
-        message: 'Choose a shape',
+        message: 'Please Choose a shape',
         choices: ['Circle', 'Triangle', 'Square'],
     },
     {
         type: 'input',
         name: 'shapeColor',
-        message: 'Please enter valid color or hex color:',
+        message: 'Please enter valid shape color:',
         validate: validColors,
     },
 ];
