@@ -1,0 +1,24 @@
+{
+  "name": "Liivs-Logo-Designer",
+  "version": "1.0.0",
+  "description": "## Acceptance Criteria",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Liiv-Dev/Liivs-Logo-Designer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Liiv-Dev/Liivs-Logo-Designer/issues"
+  },
+  "homepage": "https://github.com/Liiv-Dev/Liivs-Logo-Designer#readme"
+}
