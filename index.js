@@ -1,8 +1,53 @@
+// imports npm inquirer 
 const inquirer = require('inquirer');
 const fs = require('fs');
-const svgShape = require('./lib/shapes')
+// Imported shape constructors
+const { Circle, Triangle, Square } = require('./lib/shapes');
 
-// Color code format for hex colors
+// Function to generate SVG content based on user input
+function svgShape(data) {
+    // Retrieve user input
+    const { logoText, textColor, shape, shapeColor } = data;
+
+    // Generate the shape based on user choice
+    let shapeSVG = '';
+    let textX = 0;
+    let textY = 0;
+
+    switch (shape.toLowerCase()) {
+    case 'circle':
+        const circle = new Circle(shapeColor);
+        shapeSVG = circle.generateSVG();
+        textX = 150;
+        textY = 125;
+        break;
+    case 'triangle':
+        const triangle = new Triangle(shapeColor);
+        shapeSVG = triangle.generateSVG();
+        textX = 150;
+        textY = 170;
+        break;
+    case 'square':
+        const square = new Square(shapeColor);
+        shapeSVG = square.generateSVG();
+        textX = 170;
+        textY = 130;
+        break;
+    default:
+        break;
+    }
+
+    // Generates the full SVG content using user input and generate shape function
+    const fullSVGContent = 
+        `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="300" height="200">
+            ${shapeSVG} 
+            <text x="${textX}" y="${textY}" font-size="60" text-anchor="middle" fill="${textColor}">${logoText}</text>
+        </svg>`;
+
+    return fullSVGContent;
+}
+
+  // Color code format for hex colors
 const hexColorRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
 
 //function checks for inputs with valid colors and hex colors 
@@ -17,7 +62,7 @@ const validColors = (input) => {
     if (colors || hexColors) {
         return true;
     } else {
-        return 'Please enter a valid color or hex color.';
+        return 'Please enter a valid color or hex color';
     }
 };
 
@@ -28,7 +73,7 @@ const questions = [
         name: 'logoText',
         message: 'Enter exactly 3 characters:',
         validate: function (input) {
-            return input.length === 3 ? true : 'Please enter 3 characters.';
+            return input.length > 3 || input.length < 0 ? 'Please enter 3 characters.' : true;
         },
     },
     {
@@ -74,6 +119,3 @@ const init = () => {
 };
 
 init();
-
-
-
