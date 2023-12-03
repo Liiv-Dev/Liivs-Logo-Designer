@@ -4,32 +4,37 @@ const fs = require('fs');
 // Imported shape constructors
 const { Circle, Triangle, Square } = require('./lib/shapes');
 
+// Define shapes object with constructors
+const shapes = {
+    Circle: Circle,
+    Triangle: Triangle,
+    Square: Square
+};
+
 // Function to generate SVG content based on user input
 function svgShape(data) {
+
     // Retrieve user input
     const { logoText, textColor, shape, shapeColor } = data;
 
     // Generate the shape based on user choice
-    let shapeSVG = '';
+    let selectedShape = new shapes[shape]();
+    selectedShape.fillColor = shapeColor;
+
+    // Sets text positioning to zero 
     let textX = 0;
     let textY = 0;
 
     switch (shape.toLowerCase()) {
     case 'circle':
-        const circle = new Circle(shapeColor);
-        shapeSVG = circle.generateSVG();
-        textX = 150;
+        textX = 150; 
         textY = 125;
         break;
     case 'triangle':
-        const triangle = new Triangle(shapeColor);
-        shapeSVG = triangle.generateSVG();
         textX = 150;
         textY = 170;
         break;
     case 'square':
-        const square = new Square(shapeColor);
-        shapeSVG = square.generateSVG();
         textX = 170;
         textY = 130;
         break;
@@ -40,7 +45,7 @@ function svgShape(data) {
     // Generates the full SVG content using user input and generate shape function
     const fullSVGContent = 
         `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="300" height="200">
-            ${shapeSVG} 
+            ${selectedShape.render()}  
             <text x="${textX}" y="${textY}" font-size="60" text-anchor="middle" fill="${textColor}">${logoText}</text>
         </svg>`;
 
@@ -59,7 +64,7 @@ const validColors = (input) => {
 
     const hexColors = hexColorRegex.test(input);
 
-    if (colors || hexColors) {
+    if (colors.includes(input) || input.match(hexColors)) {
         return true;
     } else {
         return 'Please enter a valid color or hex color';
