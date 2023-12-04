@@ -1,10 +1,11 @@
 # Liivs-Logo-Designer
 
 ## Description
-https://github.com/Liiv-Dev/Liivs-Logo-Designer
-
 This application creates SVG logos based on user text inputs and color selections...
-(View SVG Examples in examples folder)
+(View SVG Examples in examples folder and YT link)
+
+YT URL:
+https://www.youtube.com/watch?v=1kx9Po3MuwM
 
 ### Customer requirements
 GIVEN a command-line application that accepts user input
